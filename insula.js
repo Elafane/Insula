@@ -1,3 +1,6 @@
 var hero =  {
 
 }
+var inventar =  {
+
+}
