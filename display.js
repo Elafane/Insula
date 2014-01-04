@@ -1,11 +1,15 @@
 var display = {
 
     init : function() {
-        this.writeMessage("test");
+        for(var i=0;i<10;i++){
+            $("#messages").append("<div></div>");
+        }
         window.setInterval(this.update,1000/25);
     },
     update : function () {
         display.updateMap();
+        display.updateInventory();
+        display.writeMessage(Date.now());
     },
     updateMap : function (){
         var html = $("<div></div>");
@@ -22,7 +26,21 @@ var display = {
         }
         $("#map").html(html);
     },
+    updateInventory : function(){
+        var items = inventory.items;
+        var table = $("<table></table>");
+        for(item in items){
+            if(items[item].found){
+                var tr = $("<tr></tr>");
+                tr.append($("<td></td>").text(items[item].name));
+                tr.append($("<td></td>").text(items[item].amount));
+                table.append(tr);
+            }
+        }
+        $("#inventory").html(table);
+    },
     writeMessage : function(text){
+        $("#messages div:first").remove();
         $("#messages").append($("<div></div>").text(text));
     },
     showBeach : function () {

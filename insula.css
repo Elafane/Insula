@@ -1,9 +1,21 @@
-body {
-
+body, html {
+    height: 100%;
+}
+#wrapper {
+    height: 100%;
+    background-color: pink;
 }
 #map {
     background-color: blue;
 }
+#inventory {
+    width: 15%;
+    height: 80%;
+    float:right;
+    background-color: red;
+}
+
 #messages {
     background-color: green;
+    height: 80%;
 }
