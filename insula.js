@@ -12,22 +12,22 @@ var hero =  {
 var inventar =  {
     leaf : {
         name : "leaf",
-        found : 0,
+        found : false,
         amount: 0
     },
     stick : {
         name : "stick",
-        found : 0,
+        found : false,
         amount: 0
     },
     cauldron : {
         name : "cauldron",
-        found : 0,
+        found : false,
         amount: 0
     },
     smallStone : {
         name : "small_stone",
-        found : 0,
+        found : false,
         amount: 0
     }
 
@@ -37,11 +37,11 @@ var map = {
 
     beach : {
         obj : beach,
-        found : 1
+        found : true
     },
     forest : {
         obj : forest,
-        found : 1
+        found : true
     }
 
 };

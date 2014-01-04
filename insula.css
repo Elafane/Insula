@@ -1,3 +1,9 @@
 body {
 
 }
+#map {
+    background-color: blue;
+}
+#messages {
+    background-color: green;
+}
