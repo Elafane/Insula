@@ -5,7 +5,7 @@ var display = {
             $("#messages").append("<div></div>");
         }
         this.update();
-        //window.setInterval(this.update,1000/25);
+        window.setInterval(this.updateStatus,1000/25);
     },
     update : function () {
         display.updateMap();
@@ -30,7 +30,7 @@ var display = {
     },
     updateStatus : function () {
 		var html = $("<div></div>");
-		html.append($("<span></span>").text("thirst"));
+		html.append($("<span></span>").text("thirst:" + hero.thirst));
 		$("#status").html(html);
 	},
     updateInventory : function(){

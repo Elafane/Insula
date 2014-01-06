@@ -9,7 +9,7 @@ body, html {
     background-color: blue;
 }
 #status {
-    background-color: cyan;
+    background-color: purple;
 }
 #inventory {
     width: 15%;
@@ -24,6 +24,6 @@ body, html {
     background-color: darkorange;
 }
 #messages {
-    background-color: green;
+    background-color: lightgrey;
     height: 80%;
 }
