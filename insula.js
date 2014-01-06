@@ -46,7 +46,10 @@ var map = {
 
 };
 var beach = {
-
+	drinkSaltWater : function() {
+		hero.thirst += 5;
+		display.writeMessage("drinking salt water made you thirsty");
+	}
 };
 var forest = {
 

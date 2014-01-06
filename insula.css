@@ -8,6 +8,9 @@ body, html {
 #map {
     background-color: blue;
 }
+#status {
+    background-color: cyan;
+}
 #inventory {
     width: 15%;
     height: 80%;

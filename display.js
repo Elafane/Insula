@@ -9,6 +9,7 @@ var display = {
     },
     update : function () {
         display.updateMap();
+        display.updateStatus();
         display.updateInventory();
         display.writeMessage(Date.now());
     },
@@ -27,6 +28,11 @@ var display = {
         }
         $("#map").html(html);
     },
+    updateStatus : function () {
+		var html = $("<div></div>");
+		html.append($("<span></span>").text("thirst"));
+		$("#status").html(html);
+	},
     updateInventory : function(){
         var items = inventory.items;
         var table = $("<table></table>");
@@ -47,6 +53,7 @@ var display = {
     showBeach : function () {
         var html = $("<div></div>");
         var fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("ocean"));
+        fieldset.append($("<button></button>").text("drink salt water").click(beach.drinkSaltWater));
         html.append(fieldset);
 
         $("#buttons").html(html);
