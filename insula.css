@@ -14,7 +14,12 @@ body, html {
     float:right;
     background-color: red;
 }
-
+#buttons {
+    width: 15%;
+    height: 80%;
+    float:left;
+    background-color: darkorange;
+}
 #messages {
     background-color: green;
     height: 80%;

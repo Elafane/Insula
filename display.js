@@ -4,7 +4,8 @@ var display = {
         for(var i=0;i<10;i++){
             $("#messages").append("<div></div>");
         }
-        window.setInterval(this.update,1000/25);
+        this.update();
+        //window.setInterval(this.update,1000/25);
     },
     update : function () {
         display.updateMap();
@@ -16,12 +17,12 @@ var display = {
         var btn;
         if(map.beach.found){
             btn = $("<button>beach</button>");
-            btn.click(this.showBeach);
+            btn.click(display.showBeach);
             html.append(btn);
         }
         if(map.forest.found){
             btn = $("<button>forest</button>");
-            btn.click(this.showForest);
+            btn.click(display.showForest);
             html.append(btn);
         }
         $("#map").html(html);
@@ -44,8 +45,16 @@ var display = {
         $("#messages").append($("<div></div>").text(text));
     },
     showBeach : function () {
+        var html = $("<div></div>");
+        var fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("ocean"));
+        html.append(fieldset);
+
+        $("#buttons").html(html);
     },
     showForest : function () {
+        var html = $("<div></div>");
+
+        $("#buttons").html(html);
     }
 };
 $(document).ready(function(){
