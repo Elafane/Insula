@@ -4,9 +4,9 @@ var display = {
         for(var i=0;i<10;i++){
             $("#messages").append("<div></div>");
         }
-        this.update();
-        this.updateMap();
-        window.setInterval(this.update,1000/25);
+        display.update();
+        display.updateMap();
+        window.setInterval(display.update,1000/25);
     },
     update : function () {
         //display.updateMap();
