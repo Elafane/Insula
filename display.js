@@ -5,13 +5,14 @@ var display = {
             $("#messages").append("<div></div>");
         }
         this.update();
-        window.setInterval(this.updateStatus,1000/25);
+        this.updateMap();
+        window.setInterval(this.update,1000/25);
     },
     update : function () {
-        display.updateMap();
+        //display.updateMap();
         display.updateStatus();
         display.updateInventory();
-        display.writeMessage(Date.now());
+        //display.writeMessage(Date.now());
     },
     updateMap : function (){
         var html = $("<div></div>");
@@ -55,7 +56,11 @@ var display = {
         var fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("ocean"));
         fieldset.append($("<button></button>").text("drink salt water").click(beach.drinkSaltWater));
         html.append(fieldset);
-
+		
+		fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("sand"));
+		fieldset.append($("<button></button>").text("dig").click(beach.dig));
+		html.append(fieldset);
+		
         $("#buttons").html(html);
     },
     showForest : function () {
