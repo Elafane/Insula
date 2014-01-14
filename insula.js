@@ -1,7 +1,13 @@
 var game = {
 
+	lastThirstTick : 0,
+	
     tick : function(){
         var now = Date.now();
+        if(now - game.lastThirstTick > 5000){
+			game.lastThirstTick = now;
+			hero.thirst++;
+		}
     }
 };
 var hero =  {
