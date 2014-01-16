@@ -17,12 +17,12 @@ var display = {
     updateMap : function (){
         var html = $("<div></div>");
         var btn;
-        if(map.beach.found){
+        if(map.place.hasOwnProperty('beach')){
             btn = $("<button>beach</button>");
             btn.click(display.showBeach);
             html.append(btn);
         }
-        if(map.forest.found){
+        if(map.place.hasOwnProperty('forest')){
             btn = $("<button>forest</button>");
             btn.click(display.showForest);
             html.append(btn);
@@ -59,6 +59,14 @@ var display = {
 		
 		fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("sand"));
 		fieldset.append($("<button></button>").text("dig").click(beach.dig));
+		if(!beach.fireplace.build && inventory.items.smallStone.found){
+			fieldset.append($("<button></button>").text("build fire place (10 small stone)").click(beach.buildFirePlace));
+		}
+		html.append(fieldset);
+		
+		if(beach.fireplace.build){
+			fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("fire place"));
+		}
 		html.append(fieldset);
 		
         $("#buttons").html(html);
