@@ -16,6 +16,14 @@ var hero =  {
     hunger : 0
 };
 var inventory =  {
+	add : function(item,number) {
+		if(inventory.items.hasOwnProperty(item)){
+			inventory.items[item].found = true;
+			inventory.items[item].amount += number;
+		}		
+		
+	},
+	
 	use : function(item,number) {
 		if(inventory.items.hasOwnProperty(item)){
 			inventory.items[item].amount -= number;
