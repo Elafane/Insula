@@ -44,6 +44,12 @@ var beach = {
 			inventory.use('smallStone',10);
 			beach.fireplace.build = true;
 		}
+	},
+	fillCauldron : function(){
+		if(inventory.items.cauldron.amount > 0){
+			inventory.use('cauldron',1);
+			inventory.add('filledCauldron',1)
+		}
 	}
 	
 };

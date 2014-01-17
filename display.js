@@ -55,6 +55,9 @@ var display = {
         var html = $("<div></div>");
         var fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("ocean"));
         fieldset.append($("<button></button>").text("drink salt water").click(beach.drinkSaltWater));
+        if(inventory.items.cauldron.amount > 0){
+			fieldset.append($("<button></button>").text("fill cauldron").click(beach.fillCauldron));
+		}
         html.append(fieldset);
 		
 		fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("sand"));

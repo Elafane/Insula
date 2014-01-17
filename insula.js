@@ -46,6 +46,11 @@ var inventory =  {
             found : false,
             amount: 0
         },
+        filledCauldron : {
+            name : "filled_cauldron",
+            found : false,
+            amount: 0
+        },
         smallStone : {
             name : "small_stone",
             found : false,
@@ -65,10 +70,6 @@ var map = {
 
 };
 
-var forest = {
-
-
-};
 $(document).ready(function(){
     window.setInterval(game.tick,1000/25);
     map.addPlace('beach',beach);
