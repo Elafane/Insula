@@ -45,7 +45,15 @@ var display = {
                 table.append(tr);
             }
         }
-        $("#inventory").html(table);
+        $("#items").html(table);
+        var actions = $("<div></div>");
+        var fieldset;
+        if(inventory.items.filledCauldron.amount > 0){
+			fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("filled cauldron"));
+			fieldset.append($("<button></button>").text("drink").click(beach.drinkSaltWater));
+			actions.append(fieldset);
+		}
+		$('#actions').html(actions);
     },
     writeMessage : function(text){
         $("#messages div:first").remove();

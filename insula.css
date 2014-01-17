@@ -12,10 +12,20 @@ body, html {
     background-color: purple;
 }
 #inventory {
-    width: 15%;
+    width: 25%;
     height: 80%;
     float:right;
     background-color: red;
+}
+#items {
+    width: 50%;
+    height: 100%;
+    float:right;
+    background-color: darkred;
+}
+#actions {
+	height: 100%;
+	background-color: deeppink;
 }
 #buttons {
     width: 15%;
