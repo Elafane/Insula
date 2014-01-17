@@ -37,7 +37,7 @@ var display = {
     updateInventory : function(){
         var items = inventory.items;
         var table = $("<table></table>");
-        for(item in items){
+        for(var item in items){
             if(items[item].found){
                 var tr = $("<tr></tr>");
                 tr.append($("<td></td>").text(items[item].name));

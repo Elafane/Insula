@@ -74,4 +74,4 @@ $(document).ready(function(){
     window.setInterval(game.tick,1000/25);
     map.addPlace('beach',beach);
     map.addPlace('forest',forest);
-})
+});
