@@ -11,12 +11,6 @@ body, html {
 #status {
     background-color: purple;
 }
-#resources {
-    width: 15%;
-    height: 90%;
-    float:right;
-    background-color: red;
-}
 #buttons {
     width: 15%;
     height: 90%;

@@ -11,7 +11,6 @@ var display = {
     update : function () {
         //display.updateMap();
         display.updateStatus();
-        display.updateResources();
         //display.writeMessage(Date.now());
     },
     updateMap : function (){
@@ -37,27 +36,15 @@ var display = {
 		html.append($("<span></span>").text("thirst:" + hero.thirst));
 		$("#status").html(html);
 	},
-    updateResources : function(){
-        var resources = inventory.resources;
-        var table = $("<table></table>");
-        for(var resource in resources){
-            if(resources[resource].found){
-                var tr = $("<tr></tr>");
-                tr.append($("<td></td>").text(resources[resource].name));
-                tr.append($("<td></td>").text(resources[resource].amount));
-                table.append(tr);
-            }
-        }
-        $("#resources").html(table);	
-    },
+	
     showInventory : function(){
 		var html = $("<div></div>");
-		var fieldset;
-		if(inventory.items.filledCauldron.amount > 0){
-			fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("filled cauldron"));
-			fieldset.append(($("<button></button>").text("drink salt water")).click(beach.drinkSaltWater));
-			html.append(fieldset);
-		}
+		var items = inventory.items;
+        for(var item in items){
+            if(items[item].found){
+				html.append($('<button></button>').text(items[item].name + " : " + items[item].amount));
+            }
+        }
 		$("#inventory").html(html);
 		$("#inventory").toggle();
 	},
@@ -76,7 +63,7 @@ var display = {
 		
 		fieldset = $("<fieldset></fieldset>").append($("<legend></legend>").text("sand"));
 		fieldset.append($("<button></button>").text("dig").click(beach.dig));
-		if(!beach.fireplace.build && inventory.resources.smallStone.found){
+		if(!beach.fireplace.build && inventory.items.smallStone.found){
 			fieldset.append($("<button></button>").text("build fire place (10 small stone)").click(beach.buildFirePlace));
 		}
 		html.append(fieldset);
