@@ -16,7 +16,21 @@ var hero =  {
     hunger : 0
 };
 var inventory =  {
-	add : function(item,number) {
+	addResource : function(resource,number) {
+		if(inventory.resources.hasOwnProperty(resource)){
+			inventory.resources[resource].found = true;
+			inventory.resources[resource].amount += number;
+		}		
+		
+	},
+	
+	useResource : function(resource,number) {
+		if(inventory.resources.hasOwnProperty(resource)){
+			inventory.resources[resource].amount -= number;
+		}
+	},
+	
+	addItem : function(item,number) {
 		if(inventory.items.hasOwnProperty(item)){
 			inventory.items[item].found = true;
 			inventory.items[item].amount += number;
@@ -24,23 +38,13 @@ var inventory =  {
 		
 	},
 	
-	use : function(item,number) {
+	useItem : function(item,number) {
 		if(inventory.items.hasOwnProperty(item)){
 			inventory.items[item].amount -= number;
 		}
 	},
-	
+		
     items : {
-        leaf : {
-            name : "leaf",
-            found : false,
-            amount: 0
-        },
-        stick : {
-            name : "stick",
-            found : false,
-            amount: 0
-        },
         cauldron : {
             name : "cauldron",
             found : false,
@@ -50,13 +54,27 @@ var inventory =  {
             name : "filled_cauldron",
             found : false,
             amount: 0
-        },
-        smallStone : {
+        }
+        
+    },
+    resources : {
+		smallStone : {
             name : "small_stone",
             found : false,
             amount: 0
+        },
+        leaf : {
+            name : "leaf",
+            found : false,
+            amount: 0
+        },
+        stick : {
+            name : "stick",
+            found : false,
+            amount: 0
         }
-    }
+		
+	}
 };
 var map = {
 
