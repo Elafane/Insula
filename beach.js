@@ -50,6 +50,76 @@ var beach = {
 			inventory.use('cauldron',1);
 			inventory.add('filledCauldron',1)
 		}
-	}
+	},
+	
+	
+	show : function () {
+		var actionGroups,actionGroup,action;
+		
+		actionGroups = [];
+		
+		
+		//begin ocean
+		actionGroup = { 
+			name : 'ocean',
+			actions : []
+		};
+		
+		action = {
+			name : 'drink saltwater',
+			action : beach.drinkSaltWater
+		};
+		actionGroup.actions.push(action);
+		
+		if(inventory.items.cauldron.amount > 0){
+			action = {
+				name : 'fill Cauldron',
+				action : beach.fillCauldron
+			};
+			actionGroup.actions.push(action);		
+		}
+		
+		
+		
+		actionGroups.push(actionGroup);
+		// end ocean
+		
+		
+		//begin sand
+		actionGroup = { 
+			name : 'sand',
+			actions : []
+		};
+		
+		action = {
+			name : 'dig',
+			action : beach.dig
+		};
+		actionGroup.actions.push(action);
+		
+		if(!beach.fireplace.build && inventory.items.smallStone.found){
+			action = {
+				name : 'build fire place (10 small stone)',
+				action : beach.buildFirePlace
+			};
+			actionGroup.actions.push(action);	
+		}
+
+		actionGroups.push(actionGroup);
+		//end sand
+		
+		
+		//begin fireplace
+		if(beach.fireplace.build){
+			actionGroup = { 
+				name : 'fireplace',
+				actions : []
+			};
+			actionGroups.push(actionGroup);			
+		}
+		//end fireplace
+		
+		display.displayActions(actionGroups);
+    }
 	
 };

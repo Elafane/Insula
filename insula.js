@@ -35,17 +35,27 @@ var inventory =  {
         cauldron : {
             name : "cauldron",
             found : false,
-            amount: 0
+            amount: 0,
+            action : function(){return null}
         },
         filledCauldron : {
             name : "filled_cauldron",
             found : false,
-            amount: 0
+            amount: 0,
+            action : function(){return function(){
+					if(inventory.items.filledCauldron.amount > 0){
+						beach.drinkSaltWater();
+						inventory.use('filledCauldron',1);
+						inventory.add('cauldron',1);
+					}
+				}
+			}
         },
 		smallStone : {
             name : "small_stone",
             found : false,
-            amount: 0
+            amount: 0,
+            action : function(){return null}
         },
         leaf : {
             name : "leaf",
@@ -64,6 +74,7 @@ var map = {
 
 	addPlace : function (name,object) {
 		map.place[name] = {
+			name : name,
 			obj : object
 		}
 	},
