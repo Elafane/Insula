@@ -52,7 +52,7 @@ var inventory =  {
 			}
         },
 		smallStone : {
-            name : "small_stone",
+            name : "small stone",
             found : false,
             amount: 0,
             action : function(){return null}
