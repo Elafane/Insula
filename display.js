@@ -49,7 +49,7 @@ var display = {
         for(var item in items){
             if(items[item].found){
 				html.append($('<button></button>').text(items[item].name + " : " + items[item].amount)
-				.click(items[item].action()).click(display.updateInventory));
+				.click(items[item].action()).click(display.reload));
             }
         }
 		$("#inventory").html(html);

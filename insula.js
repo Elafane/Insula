@@ -38,14 +38,14 @@ var inventory =  {
             amount: 0,
             action : function(){return null}
         },
-        filledCauldron : {
-            name : "filled_cauldron",
+        filledCauldronSalt : {
+            name : "filled Cauldron (saltwater)",
             found : false,
             amount: 0,
             action : function(){return function(){
-					if(inventory.items.filledCauldron.amount > 0){
+					if(inventory.items.filledCauldronSalt.amount > 0){
 						beach.drinkSaltWater();
-						inventory.use('filledCauldron',1);
+						inventory.use('filledCauldronSalt',1);
 						inventory.add('cauldron',1);
 					}
 				}

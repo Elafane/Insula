@@ -49,7 +49,7 @@ var beach = {
 	fillCauldron : function(){
 		if(inventory.items.cauldron.amount > 0){
 			inventory.use('cauldron',1);
-			inventory.add('filledCauldron',1)
+			inventory.add('filledCauldronSalt',1)
 		}
 	},
 	
@@ -66,18 +66,16 @@ var beach = {
 			actions : []
 		};
 		
-		action = {
+		actionGroup.actions.push({
 			name : 'drink water',
 			action : beach.drinkSaltWater
-		};
-		actionGroup.actions.push(action);
+		});
 		
 		if(inventory.items.cauldron.amount > 0){
-			action = {
+			actionGroup.actions.push({
 				name : 'fill Cauldron',
 				action : beach.fillCauldron
-			};
-			actionGroup.actions.push(action);		
+			});		
 		}
 		
 		
@@ -92,18 +90,16 @@ var beach = {
 			actions : []
 		};
 		
-		action = {
+		actionGroup.actions.push({
 			name : 'dig',
 			action : beach.dig
-		};
-		actionGroup.actions.push(action);
+		});
 		
 		if(!beach.fireplace.build && inventory.items.smallStone.found){
-			action = {
+			actionGroup.actions.push({
 				name : 'build fire place (10 small stone)',
 				action : beach.buildFirePlace
-			};
-			actionGroup.actions.push(action);	
+			});	
 		}
 
 		actionGroups.push(actionGroup);
