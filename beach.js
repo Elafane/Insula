@@ -36,6 +36,7 @@ var beach = {
 			display.writeMessage("You found nothing :(");
 		}
 		beach.digging = false;
+		display.reload();
 	},
 	
 	
@@ -66,7 +67,7 @@ var beach = {
 		};
 		
 		action = {
-			name : 'drink saltwater',
+			name : 'drink water',
 			action : beach.drinkSaltWater
 		};
 		actionGroup.actions.push(action);

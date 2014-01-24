@@ -1,5 +1,7 @@
 var display = {
-
+	
+	currentObject : null,
+	
     init : function() {
         for(var i=0;i<10;i++){
             $("#messages").append("<div></div>");
@@ -21,7 +23,13 @@ var display = {
 			place = map.place[p];
 			btn = $("<button></button>");
 			btn.text(place.name);
-			btn.click(place.obj.show);
+			btn.click(function(obj){
+				return function(){
+					display.currentObject = obj;
+					obj.show();
+				}
+			}(place.obj));
+			//btn.click(place.obj.show);
 			html.append(btn);
 		}
         $("#map").html(html);
@@ -48,13 +56,11 @@ var display = {
         $("#messages div:first").remove();
         $("#messages").append($("<div></div>").text(text));
     },
-    showForest : function () {
-        var html = $("<div></div>");
-
-        $("#buttons").html(html);
-    },
+    reload : function() {
+		display.currentObject.show();
+	},
     displayActions : function(actionGroups){
-		
+
 		var html = $('<div></div>');
 		
 		for(var i = 0,l = actionGroups.length;i<l;i++){
@@ -66,6 +72,7 @@ var display = {
 				var button = $("<button></button>");
 				button.text(action.name);
 				button.click(action.action);
+				button.click(display.reload);
 				fieldset.append(button);
 			}
 			
