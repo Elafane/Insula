@@ -41,16 +41,19 @@ var display = {
 	},
 	
     showInventory : function(){
+		$("#inventory").toggle();
+	},
+	updateInventory : function() {
 		var html = $("<div></div>");
 		var items = inventory.items;
         for(var item in items){
             if(items[item].found){
 				html.append($('<button></button>').text(items[item].name + " : " + items[item].amount)
-				.click(items[item].action()));
+				.click(items[item].action()).click(display.updateInventory));
             }
         }
 		$("#inventory").html(html);
-		$("#inventory").toggle();
+		
 	},
     writeMessage : function(text){
         $("#messages div:first").remove();
@@ -58,6 +61,7 @@ var display = {
     },
     reload : function() {
 		display.currentObject.show();
+		display.updateInventory();
 	},
     displayActions : function(actionGroups){
 
