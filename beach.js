@@ -4,7 +4,8 @@ var beach = {
 		
 		build : false,
 		cauldronPlaced : false,
-		waterCooked : false
+		cooking : false,
+		cooked : false
 		
 		
 	},
@@ -66,6 +67,31 @@ var beach = {
 			beach.fireplace.cauldronPlaced = true;
 		}
 	},
+	cook : function(){
+		if(!beach.fireplace.cooking){
+			display.writeMessage("cooking...");
+			beach.fireplace.cooking = true;
+			window.setTimeout(beach.cooked,2000);
+		}
+	},
+	cooked : function(){
+		beach.fireplace.cooking = false;
+		beach.fireplace.cooked = true;
+		display.reload();
+	},
+	takeCauldron : function(){
+		if(beach.fireplace.cauldronPlaced){
+			if(!beach.fireplace.cooked){
+				inventory.add('filledCauldronSalt',1);
+			}
+			else {
+				inventory.add('filledCauldronWater',1);
+			}
+			beach.fireplace.cauldronPlaced = false;
+			beach.fireplace.cooked = false;
+			beach.fireplace.cooking = false;
+		}
+	},
 	
 	show : function () {
 		var actionGroups,actionGroup,action;
@@ -124,13 +150,25 @@ var beach = {
 			actionGroup = { 
 				name :  'fireplace' + 
 					((beach.fireplace.cauldronPlaced)?' with cauldron' + 
-						((beach.fireplace.waterCooked)?'(water)':'(salt water)'):''),
+						((beach.fireplace.cooked)?'(water)':'(salt water)'):''),
 				actions : []
 			};
 			if(!beach.fireplace.cauldronPlaced && inventory.items.filledCauldronSalt.amount >= 1){
 				actionGroup.actions.push({
 					name : 'place filled cauldron',
 					action : beach.placeFilledCauldron
+				});
+			};
+			if(beach.fireplace.cauldronPlaced){
+				actionGroup.actions.push({
+					name : 'take the cauldron',
+					action : beach.takeCauldron
+				});
+			};
+			if(beach.fireplace.cauldronPlaced && !beach.fireplace.cooked && !beach.fireplace.cooking){
+				actionGroup.actions.push({
+					name : 'lets cook',
+					action : beach.cook
 				});
 			}
 			actionGroups.push(actionGroup);			

@@ -15,7 +15,13 @@ var hero =  {
     thirst : 0,
     hunger : 0,
     
-    busy : false
+    busy : false,
+    
+    decreaseThirst : function(amount){
+		if((hero.thirst -= amount) < 0){
+			hero.thirst = 0;
+		}
+	}
 };
 
 var map = {

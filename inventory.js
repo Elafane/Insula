@@ -33,6 +33,18 @@ var inventory =  {
 					}
 				}
         },
+        filledCauldronWater : {
+            name : "filled Cauldron (water)",
+            found : false,
+            amount: 0,
+            action : function(){
+					if(inventory.items.filledCauldronWater.amount > 0){
+						hero.decreaseThirst(25);
+						inventory.use('filledCauldronWater',1);
+						inventory.add('cauldron',1);
+					}
+				}
+        },
 		smallStone : {
             name : "small stone",
             found : false,
