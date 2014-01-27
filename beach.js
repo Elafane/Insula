@@ -1,9 +1,11 @@
 var beach = {
 	
-	digging : false,
 	fireplace : {
 		
-		build : false 
+		build : false,
+		cauldronPlaced : false,
+		waterCooked : false
+		
 		
 	},
 	
@@ -14,9 +16,9 @@ var beach = {
 	
 	
 	dig : function() {
-		if(!beach.digging){
+		if(!hero.busy){
 			display.writeMessage("digging...");
-			beach.digging = true;
+			hero.busy = true;
 			window.setTimeout(beach.digged,1000);
 		}
 	},
@@ -35,14 +37,20 @@ var beach = {
 		else {
 			display.writeMessage("You found nothing :(");
 		}
-		beach.digging = false;
+		hero.busy = false;
 		display.reload();
 	},
 	
 	
 	buildFirePlace : function() {
-		if(!beach.fireplace.build && inventory.items.smallStone.amount >= 10){
+		if(!beach.fireplace.build 
+			&& inventory.items.smallStone.amount >= 10
+			&& inventory.items.stick.amount >= 5
+			&& inventory.items.leaf.amount >= 20
+		){
 			inventory.use('smallStone',10);
+			inventory.use('stick',5);
+			inventory.use('leaf',20);
 			beach.fireplace.build = true;
 		}
 	},
@@ -52,7 +60,12 @@ var beach = {
 			inventory.add('filledCauldronSalt',1)
 		}
 	},
-	
+	placeFilledCauldron : function(){
+		if(inventory.items.filledCauldronSalt.amount >= 1){
+			inventory.use('filledCauldronSalt',1);
+			beach.fireplace.cauldronPlaced = true;
+		}
+	},
 	
 	show : function () {
 		var actionGroups,actionGroup,action;
@@ -78,8 +91,6 @@ var beach = {
 			});		
 		}
 		
-		
-		
 		actionGroups.push(actionGroup);
 		// end ocean
 		
@@ -95,9 +106,11 @@ var beach = {
 			action : beach.dig
 		});
 		
-		if(!beach.fireplace.build && inventory.items.smallStone.found){
+		if(!beach.fireplace.build 
+				&& (inventory.items.smallStone.found || inventory.items.stick.found)
+			){
 			actionGroup.actions.push({
-				name : 'build fire place (10 small stone)',
+				name : 'build fire place (10 small stone, 5 stick, 20 leaf)',
 				action : beach.buildFirePlace
 			});	
 		}
@@ -109,9 +122,17 @@ var beach = {
 		//begin fireplace
 		if(beach.fireplace.build){
 			actionGroup = { 
-				name : 'fireplace',
+				name :  'fireplace' + 
+					((beach.fireplace.cauldronPlaced)?' with cauldron' + 
+						((beach.fireplace.waterCooked)?'(water)':'(salt water)'):''),
 				actions : []
 			};
+			if(!beach.fireplace.cauldronPlaced && inventory.items.filledCauldronSalt.amount >= 1){
+				actionGroup.actions.push({
+					name : 'place filled cauldron',
+					action : beach.placeFilledCauldron
+				});
+			}
 			actionGroups.push(actionGroup);			
 		}
 		//end fireplace

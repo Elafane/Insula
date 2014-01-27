@@ -13,63 +13,11 @@ var game = {
 var hero =  {
 
     thirst : 0,
-    hunger : 0
+    hunger : 0,
+    
+    busy : false
 };
-var inventory =  {
-	
-	add : function(item,number) {
-		if(inventory.items.hasOwnProperty(item)){
-			inventory.items[item].found = true;
-			inventory.items[item].amount += number;
-		}		
-		
-	},
-	
-	use : function(item,number) {
-		if(inventory.items.hasOwnProperty(item)){
-			inventory.items[item].amount -= number;
-		}
-	},
-		
-    items : {
-        cauldron : {
-            name : "cauldron",
-            found : false,
-            amount: 0,
-            action : function(){return null}
-        },
-        filledCauldronSalt : {
-            name : "filled Cauldron (saltwater)",
-            found : false,
-            amount: 0,
-            action : function(){return function(){
-					if(inventory.items.filledCauldronSalt.amount > 0){
-						beach.drinkSaltWater();
-						inventory.use('filledCauldronSalt',1);
-						inventory.add('cauldron',1);
-					}
-				}
-			}
-        },
-		smallStone : {
-            name : "small stone",
-            found : false,
-            amount: 0,
-            action : function(){return null}
-        },
-        leaf : {
-            name : "leaf",
-            found : false,
-            amount: 0
-        },
-        stick : {
-            name : "stick",
-            found : false,
-            amount: 0
-        }
-		
-	}
-};
+
 var map = {
 
 	addPlace : function (name,object) {
